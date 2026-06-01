@@ -1,7 +1,43 @@
 import { dashboardData } from "./dashboardData";
-
+import { runGateKeeperScan } from "./gatekeeper";
+import { useEffect, useState } from "react";
+import { classifyObservation } from "./heimdal";
+import { createMessage } from "./ratatoskr";
+import { storeObservation, getObservationCount } from "./monolith";
 
 function App() {
+
+  const [scanData, setScanData] = useState(null);
+  const [recordCount, setRecordCount] = useState(0);
+  const [lastObservation, setLastObservation] = useState(null);
+  const heimdalData = classifyObservation(scanData);
+  const ratatoskrMessage =
+    createMessage(
+      "GateKeeper",
+      "Heimdal",
+      "OBSERVATION",
+      scanData
+    );
+
+  useEffect(() => {
+
+    async function scan() {
+
+      const result = await runGateKeeperScan();
+
+      storeObservation(result);
+
+      setLastObservation(result);
+
+      setRecordCount(getObservationCount())
+
+      setScanData(result);
+    }
+
+    scan();
+
+  }, []);
+
   return (
     <div
       style={{
@@ -80,16 +116,23 @@ function App() {
                 marginLeft: "8px"
               }}
             >
-              {dashboardData.gatekeeper.status}
+              {scanData?.status || "SCANNING"}
             </span>
           </p>
 
           <p>
-            Target: {dashboardData.gatekeeper.target}
+            Target: {scanData?.target || "Awating Scan"}
           </p>
 
           <p>
-            Findings: {dashboardData.gatekeeper.findings}
+            Findings: {scanData?.findings || 0}
+          </p>
+
+          <p>
+            Response Time:
+            {" "}
+            {scanData?.responseTime || 0}
+            ms
           </p>
         </div>
 
@@ -110,20 +153,20 @@ function App() {
                 marginLeft: "8px"
               }}
             >
-              {dashboardData.heimdal.classification}
+              {heimdalData.classification}
             </span>
           </p>
 
           <p>
             Confidence:
             {" "}
-            {dashboardData.heimdal.confidence}
+            {heimdalData.confidence}
           </p>
 
           <p>
             Priority:
             {" "}
-            {dashboardData.heimdal.priority}
+            {heimdalData.priority}
           </p>
 
         </div>
@@ -139,7 +182,26 @@ function App() {
           <p>
             Records Stored:
             {" "}
-            {dashboardData.monolith.recordsStored}
+            {recordCount}
+          </p>
+
+          <p>
+            Last Status:
+            {" "}
+            {lastObservation?.status || "NONE"}
+          </p>
+
+          <p>
+            Last Target:
+            {" "}
+            {lastObservation?.target || "NONE"}
+          </p>
+
+          <p>
+            Last Response:
+            {" "}
+            {lastObservation?.responseTime || 0}
+            ms
           </p>
         </div>
 
@@ -175,15 +237,33 @@ function App() {
             <h2>🐿 Ratatoskr</h2>
 
             <p>
-              Message ID: MSG-000001
+              Message ID:
+              {" "}
+              {ratatoskrMessage.messageId}
             </p>
 
             <p>
-              Source: GateKeeper
+              Source:
+              {" "}
+              {ratatoskrMessage.source}
             </p>
 
             <p>
-              Destination: Heimdal
+              Destination:
+              {" "}
+              {ratatoskrMessage.destination}
+            </p>
+
+            <p>
+              Type:
+              {" "}
+              {ratatoskrMessage.messageType}
+            </p>
+
+            <p>
+              TimeStamp:
+              {" "}
+              {ratatoskrMessage.timestamp}
             </p>
           </div>
         </div>

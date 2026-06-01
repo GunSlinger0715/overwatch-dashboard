@@ -10,6 +10,7 @@ function App() {
   const [scanData, setScanData] = useState(null);
   const [recordCount, setRecordCount] = useState(0);
   const [lastObservation, setLastObservation] = useState(null);
+  const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
   const ratatoskrMessage =
     createMessage(
@@ -88,6 +89,49 @@ function App() {
       >
         SYSTEM STATUS: OPERATIONAL
       </div>
+      <div
+        style={{
+          border: "1px solid #334155",
+          backgroundColor: "#111827",
+          padding: "20px",
+          borderRadius: "8px",
+          marginBottom: "30px"
+        }}
+      >
+        <h2>Target To Scan</h2>
+
+        <input
+          type="text"
+          value={target}
+          onChange={(e) => setTarget(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#0B0F14",
+            color: "#FFFFFF",
+            border: "1px solid #334155",
+            borderRadius: "4px"
+          }}
+        />
+      </div>
+
+      <button
+        onClick={() => alert(target)}
+        style={{
+          marginTop: "15px",
+          padding: "10px 20px",
+          backgroundColor: "#38BDF8",
+          color: "#0B0F14",
+          border: "none",
+          borderRadius: "6px",
+          fontWeight: "bold",
+          cursor: "pointer"
+        }}
+      >
+        Execute Scan
+      </button>
+
+
 
       <div
         style={{

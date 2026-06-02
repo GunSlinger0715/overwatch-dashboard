@@ -8,6 +8,7 @@ import { storeObservation, getObservationCount } from "./monolith";
 function App() {
 
   const [scanData, setScanData] = useState(null);
+  const [scanStatus, setScanStatus] = useState("READY_TO_SCAN");
   const [recordCount, setRecordCount] = useState(0);
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
@@ -19,6 +20,34 @@ function App() {
       "OBSERVATION",
       scanData
     );
+  async function executionScan() {
+
+    setScanStatus("SCANNING");
+
+    const result = await runGateKeeperScan();
+
+    storeObservation(result);
+
+    setLastObservation(result);
+
+    setRecordCount(getObservationCount());
+
+    setScanData(result);
+
+    setScanStatus("SCAN_COMPLETE");
+  }
+
+  function resetDashboard() {
+
+    setScanData(null);
+
+    setLastObservation(null);
+
+    setRecordCount(0);
+
+    setScanStatus("READY_TO_SCAN");
+
+  }
 
   useEffect(() => {
 
@@ -30,12 +59,12 @@ function App() {
 
       setLastObservation(result);
 
-      setRecordCount(getObservationCount())
+      setRecordCount(getObservationCount());
 
       setScanData(result);
     }
 
-    scan();
+    //scan();
 
   }, []);
 
@@ -89,6 +118,26 @@ function App() {
       >
         SYSTEM STATUS: OPERATIONAL
       </div>
+
+      <div
+        style={{
+          marginBottom: "30px",
+          padding: "12px",
+          border: "1px solid #334155",
+          backgroundColor: "#111827",
+          borderRadius: "6px",
+          fontWeight: "bold",
+          color:
+            scanStatus === "READY_TO_SCAN"
+              ? "#38BDF8"
+              : scanStatus === "SCANNING"
+                ? "#FACC15"
+                : "#22C55E"
+        }}
+      >
+        STATUS: {scanStatus}
+      </div>
+
       <div
         style={{
           border: "1px solid #334155",
@@ -116,7 +165,7 @@ function App() {
       </div>
 
       <button
-        onClick={() => alert(target)}
+        onClick={executionScan}
         style={{
           marginTop: "15px",
           padding: "10px 20px",
@@ -129,6 +178,23 @@ function App() {
         }}
       >
         Execute Scan
+      </button>
+
+      <button
+        onClick={resetDashboard}
+        style={{
+          marginTop: "15px",
+          marginLeft: "10px",
+          padding: "10px 20px",
+          backgroundColor: "#38BDF8",
+          color: "#0B0F14",
+          border: "none",
+          borderRadius: "6px",
+          fontWeight: "bold",
+          cursor: "pointer"
+        }}
+      >
+        RESET
       </button>
 
 
@@ -160,7 +226,7 @@ function App() {
                 marginLeft: "8px"
               }}
             >
-              {scanData?.status || "SCANNING"}
+              {scanStatus}
             </span>
           </p>
 

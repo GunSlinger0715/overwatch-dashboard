@@ -9,6 +9,7 @@ function App() {
 
   const [scanData, setScanData] = useState(null);
   const [scanStatus, setScanStatus] = useState("READY_TO_SCAN");
+  const [progress, setProgress] = useState(0)
   const [recordCount, setRecordCount] = useState(0);
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
@@ -24,6 +25,8 @@ function App() {
 
     setScanStatus("SCANNING");
 
+    setProgress(50);
+
     const result = await runGateKeeperScan();
 
     storeObservation(result);
@@ -35,6 +38,8 @@ function App() {
     setScanData(result);
 
     setScanStatus("SCAN_COMPLETE");
+
+    setProgress(100);
   }
 
   function resetDashboard() {
@@ -46,6 +51,8 @@ function App() {
     setRecordCount(0);
 
     setScanStatus("READY_TO_SCAN");
+
+    setProgress(0);
 
   }
 
@@ -117,6 +124,30 @@ function App() {
         }}
       >
         STATUS: {scanStatus}
+      </div>
+
+      <div
+        style={{
+          width: "100%",
+          backgroundColor: "#1E293B",
+          borderRadius: "6px",
+          overflow: "hidden",
+          marginBottom: "30px"
+        }}
+      >
+        <div
+          style={{
+            width: `${progress}%`,
+            height: "20px",
+            backgroundColor:
+              scanStatus === "SCAN_COMPLETE"
+                ? "#22C55E"
+                : scanStatus === "SCANNING"
+                  ? "#FACC15"
+                  : "#38BDF8",
+            transition: "width 0.5s ease"
+          }}
+        />
       </div>
 
       <div

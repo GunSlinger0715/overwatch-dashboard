@@ -49,25 +49,6 @@ function App() {
 
   }
 
-  useEffect(() => {
-
-    async function scan() {
-
-      const result = await runGateKeeperScan();
-
-      storeObservation(result);
-
-      setLastObservation(result);
-
-      setRecordCount(getObservationCount());
-
-      setScanData(result);
-    }
-
-    //scan();
-
-  }, []);
-
   return (
     <div
       style={{

@@ -1,6 +1,6 @@
 import { dashboardData } from "./dashboardData";
 import { runGateKeeperScan } from "./gatekeeper";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { classifyObservation } from "./heimdal";
 import { createMessage } from "./ratatoskr";
 import { storeObservation, getObservationCount } from "./monolith";

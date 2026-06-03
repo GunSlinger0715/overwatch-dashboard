@@ -135,12 +135,7 @@ function App() {
           backgroundColor: "#111827",
           borderRadius: "6px",
           fontWeight: "bold",
-          color:
-            scanStatus === "READY_TO_SCAN"
-              ? "#38BDF8"
-              : scanStatus === "SCANNING"
-                ? "#FACC15"
-                : "#22C55E"
+          color: "#FFFFFF",
         }}
       >
         STATUS: {scanStatus}
@@ -173,7 +168,12 @@ function App() {
       <div
         style={{
           border: "1px solid #334155",
-          backgroundColor: "#111827",
+          backgroundColor:
+            scanStatus === "READY_TO_SCAN"
+              ? "#1E3A8A"
+              : scanStatus === "SCANNING"
+                ? "#854D0E"
+                : "#14532D",
           padding: "20px",
           borderRadius: "8px",
           marginBottom: "30px"

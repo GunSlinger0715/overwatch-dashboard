@@ -11,9 +11,11 @@ function App() {
   const [scanStatus, setScanStatus] = useState("READY_TO_SCAN");
   const [progress, setProgress] = useState(0)
   const [recordCount, setRecordCount] = useState(0);
+  const [eventFeed, setEventFeed] = useState([]);
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
+
   const ratatoskrMessage =
     createMessage(
       "GateKeeper",
@@ -21,15 +23,29 @@ function App() {
       "OBSERVATION",
       scanData
     );
+
+  function getTimestamp() {
+    return new Date().toLocaleTimeString();
+  }
+
   async function executionScan() {
 
     setScanStatus("SCANNING");
+
+    setEventFeed(prev => [
+      ...prev,
+      `${getTimestamp()} - Scan Started`
+    ]);
 
     setProgress(50);
 
     const result = await runGateKeeperScan();
 
+    setEventFeed(prev => [...prev, `${getTimestamp()} - GateKeeper Scan Complete`]);
+
     storeObservation(result);
+
+    setEventFeed(prev => [...prev, `${getTimestamp()} - Observation Stored in Monolith`]);
 
     setLastObservation(result);
 
@@ -38,6 +54,8 @@ function App() {
     setScanData(result);
 
     setScanStatus("SCAN_COMPLETE");
+
+    setEventFeed(prev => [...prev, `${getTimestamp()} - Scan Complete`]);
 
     setProgress(100);
   }
@@ -53,6 +71,8 @@ function App() {
     setScanStatus("READY_TO_SCAN");
 
     setProgress(0);
+
+    setEventFeed([]);
 
   }
 
@@ -390,7 +410,36 @@ function App() {
           </div>
         </div>
       </div>
+      <div
+        style={{
+          marginTop: "20px",
+          border: "1px solid #334155",
+          backgroundColor: "#0F172A",
+          borderRadius: "8px",
+          padding: "20px",
+          boxShadow: "0 0 10px rgba(56,189,248,0.15)"
+        }}
+      >
+        <h2
+          style={{
+            color: "#38BDF8"
+          }}
+        >
+          Operational Feed
+        </h2>
 
+        {eventFeed.map((event, index) => (
+          <p
+            key={index}
+            style={{
+              color: "#FFFFFF",
+              marginBottom: "8px"
+            }}
+          >
+            {event}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }

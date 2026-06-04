@@ -15,6 +15,7 @@ function App() {
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
+  const [scanHistory, setScanHistory] = useState([]);
 
   const ratatoskrMessage =
     createMessage(
@@ -54,6 +55,9 @@ function App() {
     setScanData(result);
 
     setScanStatus("SCAN_COMPLETE");
+
+    setScanHistory(prev => [...prev, `${getTimestamp()} - Scan Complete`]);
+
 
     setEventFeed(prev => [...prev, `${getTimestamp()} - Scan Complete`]);
 
@@ -420,6 +424,16 @@ function App() {
           boxShadow: "0 0 10px rgba(56,189,248,0.15)"
         }}
       >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "20px",
+            marginTop: "20px"
+          }}
+
+
+        ></div>
         <h2
           style={{
             color: "#38BDF8"

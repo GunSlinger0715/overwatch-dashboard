@@ -15,7 +15,7 @@ function App() {
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
-  const [, setScanHistory] = useState([]);
+  const [scanHistory, setScanHistory] = useState([]);
 
   const ratatoskrMessage =
     createMessage(
@@ -431,9 +431,36 @@ function App() {
             gap: "20px",
             marginTop: "20px"
           }}
-
-
         ></div>
+        <div
+          style={{
+            border: "1px solid #334155",
+            backgroundColor: "#0F172A",
+            borderRadius: "8px",
+            padding: "20px",
+            boxShadow: "0 0 10px rgba(56,189,248,0.15)"
+          }}
+        >
+          <h2
+            style={{
+              color: "#38BDF8"
+            }}
+          >
+            Scan History
+          </h2>
+
+          {scanHistory.map((scan, index) => (
+            <p
+              key={index}
+              style={{
+                color: "#FFFFFF",
+                marginBottom: "8px"
+              }}
+            >
+              {scan}
+            </p>
+          ))}
+        </div>
         <h2
           style={{
             color: "#38BDF8"

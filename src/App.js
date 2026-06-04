@@ -15,7 +15,7 @@ function App() {
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
-  const [scanHistory, setScanHistory] = useState([]);
+  const [, setScanHistory] = useState([]);
 
   const ratatoskrMessage =
     createMessage(

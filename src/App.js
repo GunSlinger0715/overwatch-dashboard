@@ -449,6 +449,35 @@ function App() {
             Scan History
           </h2>
 
+          <p
+            style={{
+              color: "#38BDF8",
+              fontWeight: "bold",
+              marginBottom: "15px"
+            }}
+          >
+            Total Scans: {scanHistory.length}
+          </p>
+
+          <p
+            style={{
+              color: "#22C55E",
+              fontWeight: "bold",
+              marginBottom: "10px"
+            }}
+          >
+            Successful Scans: {scanHistory.length}
+          </p>
+
+          <p
+            style={{
+              color: "#94A3B8",
+              marginBottom: "15px"
+            }}
+          >
+            Last Scan: {scanHistory.length > 0 ? scanHistory[scanHistory.length - 1] : "None"}
+          </p>
+
           {scanHistory.map((scan, index) => (
             <p
               key={index}
@@ -457,7 +486,7 @@ function App() {
                 marginBottom: "8px"
               }}
             >
-              {scan}
+              {`Scan #${index + 1} - ${scan}`}
             </p>
           ))}
         </div>

@@ -438,7 +438,9 @@ function App() {
             backgroundColor: "#0F172A",
             borderRadius: "8px",
             padding: "20px",
-            boxShadow: "0 0 10px rgba(56,189,248,0.15)"
+            boxShadow: "0 0 10px rgba(56,189,248,0.15)",
+            maxHeight: "300px",
+            overflowY: "auto"
           }}
         >
           <h2

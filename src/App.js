@@ -94,26 +94,39 @@ function App() {
         style={{
           borderBottom: "1px solid #1E293B",
           paddingBottom: "20px",
-          marginBottom: "30px"
+          marginBottom: "30px",
+          display: "flex",
+          alignItems: "center",
+          gap: "15px"
         }}
       >
-        <h1
+        <div
           style={{
-            color: "#38BDF8",
-            margin: "0"
+            fontSize: "40px"
           }}
         >
-          OVERWATCH
-        </h1>
+          🛡️
+        </div>
 
-        <p
-          style={{
-            color: "#94A3B8",
-            marginTop: "10px"
-          }}
-        >
-          Operational Intelligence Platform
-        </p>
+        <div>
+          <h1
+            style={{
+              color: "#38BDF8",
+              margin: "0"
+            }}
+          >
+            OVERWATCH
+          </h1>
+
+          <p
+            style={{
+              color: "#94A3B8",
+              marginTop: "10px"
+            }}
+          >
+            Operational Intelligence Platform
+          </p>
+        </div>
       </div>
 
       <div
@@ -252,7 +265,13 @@ function App() {
             borderRadius: "8px"
           }}
         >
-          <h2>GateKeeper</h2>
+          <h2
+            style={{
+              color: "#22C55E"
+            }}
+          >
+            🛡️ GateKeeper
+          </h2>
           <p>
             Status:
             <span
@@ -289,7 +308,13 @@ function App() {
             borderRadius: "8px"
           }}
         >
-          <h2>Heimdal</h2>
+          <h2
+            style={{
+              color: "#FACC15"
+            }}
+          >
+            👁️ Heimdal
+          </h2>
           <p>
             Classification:
             <span
@@ -324,7 +349,13 @@ function App() {
             borderRadius: "8px"
           }}
         >
-          <h2>Monolith</h2>
+          <h2
+            style={{
+              color: "#A855F7"
+            }}
+          >
+            🏛️ Monolith
+          </h2>
           <p>
             Records Stored:
             {" "}
@@ -358,7 +389,13 @@ function App() {
             borderRadius: "8px"
           }}
         >
-          <h2>Odin</h2>
+          <h2
+            style={{
+              color: "#38BDF8"
+            }}
+          >
+            👤 Odin
+          </h2>
           <p>
             Decision:
             <span
@@ -380,7 +417,13 @@ function App() {
               borderRadius: "8px"
             }}
           >
-            <h2>🐿 Ratatoskr</h2>
+            <h2
+              style={{
+                color: "#FB923C"
+              }}
+            >
+              🐿️ Ratatoskr
+            </h2>
 
             <p>
               Message ID:
@@ -421,7 +464,7 @@ function App() {
           backgroundColor: "#0F172A",
           borderRadius: "8px",
           padding: "20px",
-          boxShadow: "0 0 10px rgba(56,189,248,0.15)"
+          boxShadow: "0 0 10px rgba(56,189,248,0.15)",
         }}
       >
         <div
@@ -479,6 +522,13 @@ function App() {
           >
             Last Scan: {scanHistory.length > 0 ? scanHistory[scanHistory.length - 1] : "None"}
           </p>
+          <div
+            style={{
+              maxHeight: "200px",
+              overflowY: "auto",
+              marginTop: "10px"
+            }}
+          ></div>
 
           {scanHistory.map((scan, index) => (
             <p
@@ -492,6 +542,7 @@ function App() {
             </p>
           ))}
         </div>
+
         <h2
           style={{
             color: "#38BDF8"

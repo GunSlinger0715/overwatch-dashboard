@@ -1,3 +1,4 @@
+import overwatchArtwork from "./assets/Overwatch.png";
 import { dashboardData } from "./dashboardData";
 import { runGateKeeperScan } from "./gatekeeper";
 import { useState } from "react";
@@ -616,7 +617,49 @@ function App() {
             marginTop: "20px",
             marginBottom: "20px"
           }}
+        ><div
+          style={{
+            marginTop: "20px",
+            marginBottom: "20px"
+          }}
         >
+            <img
+              src={overwatchArtwork}
+              alt="OVERWATCH Ecosystem"
+              style={{
+                maxWidth: "1100px",
+                width: "100%",
+                display: "block",
+                margin: "0 auto",
+                borderRadius: "10px",
+                border: "1px solid #334155"
+              }}
+            />
+
+            <div
+              style={{
+                textAlign: "center",
+                marginTop: "15px"
+              }}
+            >
+              <h3
+                style={{
+                  color: "#38BDF8",
+                  marginBottom: "10px"
+                }}
+              >
+                Observe. Interpret. Remember. Protect.
+              </h3>
+
+              <p
+                style={{
+                  color: "#94A3B8"
+                }}
+              >
+                Transforming Observations Into Operational Understanding
+              </p>
+            </div>
+          </div>
           <h2
             style={{
               color: "#38BDF8"

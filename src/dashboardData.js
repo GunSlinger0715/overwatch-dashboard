@@ -16,6 +16,7 @@ export const dashboardData = {
     },
 
     odin: {
-        decision: "ROUTE_TO_FORGE"
+        decision: "CORRECTABLE",
+        recommendedAction: "ROUTE_TO_FORGE"
     }
 };

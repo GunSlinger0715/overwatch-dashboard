@@ -25,6 +25,15 @@ function App() {
       scanData
     );
 
+  const odinDecisionColor =
+    dashboardData.odin.decision === "ESCALATE"
+      ? "#EF4444"
+      : dashboardData.odin.decision === "CORRECTABLE"
+        ? "#FACC15"
+        : dashboardData.odin.decision === "APPROVE"
+          ? "#22C55E"
+          : "38BDF8";
+
   function getTimestamp() {
     return new Date().toLocaleTimeString();
   }
@@ -400,7 +409,7 @@ function App() {
             Decision:
             <span
               style={{
-                color: "#38BDF8",
+                color: odinDecisionColor,
                 fontWeight: "bold",
                 marginLeft: "8px"
               }}
@@ -417,6 +426,29 @@ function App() {
               borderRadius: "8px"
             }}
           >
+            <p
+              style={{
+                marginBottom: "20px"
+              }}
+            >
+              Action:
+              <span
+                style={{
+                  color: "#38BDF8",
+                  fontWeight: "bold",
+                  marginLeft: "8px"
+                }}
+              >
+                {dashboardData.odin.recommendedAction}
+              </span>
+            </p>
+
+            <hr
+              style={{
+                border: "1px solid #334155",
+                margin: "15px 0"
+              }}
+            />
             <h2
               style={{
                 color: "#FB923C"

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { classifyObservation } from "./heimdal";
 import { createMessage } from "./ratatoskr";
 import { storeObservation, getObservationCount } from "./monolith";
+import { generateNarrative } from "./narrativeEngine";
 
 function App() {
 
@@ -16,6 +17,13 @@ function App() {
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
   const [scanHistory, setScanHistory] = useState([]);
+
+  const operationalNarrative =
+    generateNarrative(
+      heimdalData,
+      recordCount,
+      dashboardData.odin
+    );
 
   const ratatoskrMessage =
     createMessage(
@@ -599,7 +607,34 @@ function App() {
             </p>
           ))}
         </div>
+        <div
+          style={{
+            border: "1px solid #334155",
+            backgroundColor: "#111827",
+            padding: "20px",
+            borderRadius: "8px",
+            marginTop: "20px",
+            marginBottom: "20px"
+          }}
+        >
+          <h2
+            style={{
+              color: "#38BDF8"
+            }}
+          >
+            📖 Operational Narrative
+          </h2>
 
+          <p
+            style={{
+              color: "#FFFFFF",
+              whiteSpace: "pre-line",
+              lineHeight: "1.8"
+            }}
+          >
+            {operationalNarrative}
+          </p>
+        </div>
         <h2
           style={{
             color: "#38BDF8"

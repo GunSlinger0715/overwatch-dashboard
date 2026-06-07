@@ -443,6 +443,31 @@ function App() {
               </span>
             </p>
 
+            <p>
+              Reason:{" "}
+              <span
+                style={{
+                  color: "#94A3B8",
+                  marginLefft: "8px"
+                }}
+              >
+                {dashboardData.odin.reason}
+              </span>
+            </p>
+
+            <p>
+              Confidence:
+              <span
+                style={{
+                  color: "#22C55E",
+                  fontWeight: "bold",
+                  marginLeft: "8px"
+                }}
+              >
+                {(dashboardData.odin.confidence * 100).toFixed(0)}%
+              </span>
+            </p>
+
             <hr
               style={{
                 border: "1px solid #334155",

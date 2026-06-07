@@ -17,6 +17,8 @@ export const dashboardData = {
 
     odin: {
         decision: "CORRECTABLE",
-        recommendedAction: "ROUTE_TO_FORGE"
+        recommendedAction: "ROUTE_TO_FORGE",
+        reason: "Recoverable endpoint misconfiguration",
+        confidence: 0.91
     }
 };

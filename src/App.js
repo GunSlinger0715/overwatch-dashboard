@@ -6,6 +6,7 @@ import { classifyObservation } from "./heimdal";
 import { createMessage } from "./ratatoskr";
 import { storeObservation, getObservationCount } from "./monolith";
 import { generateNarrative } from "./narrativeEngine";
+import { generateRecommendation } from "./forge";
 
 function App() {
 
@@ -18,6 +19,12 @@ function App() {
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
   const [scanHistory, setScanHistory] = useState([]);
+
+
+  const forgeData =
+    generateRecommendation(
+      heimdalData.classification
+    );
 
   const operationalNarrative =
     generateNarrative(
@@ -520,6 +527,36 @@ function App() {
               {" "}
               {ratatoskrMessage.timestamp}
             </p>
+            <h2
+              style={{
+                color: "#FF8C42"
+              }}
+            >
+              ⚒️ Forge
+            </h2>
+
+            <p>
+              Action:
+              <strong>
+                {forgeData.action}
+              </strong>
+            </p>
+
+            <p>
+              Priority:
+              <strong>
+                {forgeData.priority}
+              </strong>
+            </p>
+
+            <p>
+              Recommendation:
+            </p>
+
+            <p>
+              {forgeData.recommendation}
+            </p>
+
           </div>
         </div>
       </div>

@@ -11,44 +11,58 @@
 //
 // =========================================================
 
-export function generateRecommendation(
-    classification
-) {
 
-    if (classification === "HEALTHY_ENDPOINT") {
+export function generateRecommendation(
+    decision
+) {
+    console.log("FORGE RECEIVED:", decision);
+
+    if (decision === "ALLOW") {
 
         return {
             action: "NO_ACTION_REQUIRED",
-            recommendation:
-                "No corrective action is required at this time.",
-            priority: "LOW"
+            recommendations: [
+                "No corrective action required"
+            ]
         };
     }
 
-    if (classification === "MISCONFIGURATION") {
+    if (decision === "CORRECTABLE") {
 
         return {
             action: "REMEDIATE_CONFIGURATION",
-            recommendation:
-                "Review endpoint configuration, validate security headers, and verify access controls.",
-            priority: "MEDIUM"
+
+            priority: "MEDIUM",
+
+            recommendations: [
+                "Validate security headers",
+                "Review access controls",
+                "Confirm TLS configuration",
+                "Re-run endpoint assessment"
+            ]
         };
     }
 
-    if (classification === "MALICIOUS") {
+    if (decision === "ESCALATE") {
 
         return {
             action: "ESCALATE_INCIDENT",
-            recommendation:
-                "Preserve evidence, escalate immediately, and route for investigation.",
-            priority: "HIGH"
+            recommendations: [
+                "Preserve evidence",
+                "Escalate incident immediately",
+                "Notify security operations",
+                "Begin investigation"
+            ]
         };
     }
 
     return {
         action: "REVIEW_REQUIRED",
-        recommendation:
-            "Additional investigation is required before action can be determined.",
+        recommendations: [
+            "Collect additional information",
+            "Review findings",
+            "Perform manual validation"
+        ],
         priority: "UNKNOWN"
     };
 }

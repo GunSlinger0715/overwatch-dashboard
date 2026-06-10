@@ -23,7 +23,7 @@ function App() {
 
   const forgeData =
     generateRecommendation(
-      heimdalData.classification
+      dashboardData.odin.decision
     );
 
   const operationalNarrative =
@@ -550,12 +550,16 @@ function App() {
             </p>
 
             <p>
-              Recommendation:
+              Recommended Actions:
             </p>
 
-            <p>
-              {forgeData.recommendation}
-            </p>
+            <ul>
+              {forgeData.recommendations.map((item, index) => (
+                <li key={index}>
+                  {item}
+                </li>
+              ))}
+            </ul>
 
           </div>
         </div>

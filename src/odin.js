@@ -1,0 +1,72 @@
+// =========================================================
+// ODIN Decision Engine
+//
+// Purpose:
+// Transform interpreted observations
+// into operational judgments.
+//
+// Philosophy:
+// Wisdom Through Understanding.
+//
+// Observe.
+// Interpret.
+// Judge.
+//
+// =========================================================
+
+export function evaluateObservation(
+    heimdalData
+) {
+
+    if (
+        heimdalData.classification ===
+        "HEALTHY_ENDPOINT"
+    ) {
+
+        return {
+            decision: "ALLOW",
+            recommendedAction: "NO_ACTION_REQUIRED",
+            reason:
+                "Endpoint appears healthy.",
+            confidence: 0.95
+        };
+    }
+
+    if (
+        heimdalData.classification ===
+        "MISCONFIGURATION"
+    ) {
+
+        return {
+            decision: "CORRECTABLE",
+            recommendedAction: "ROUTE_TO_FORGE",
+            reason:
+                "Recoverable endpoint misconfiguration",
+            confidence: 0.91
+        };
+    }
+
+    if (
+        heimdalData.classification ===
+        "MALICIOUS"
+    ) {
+
+        return {
+            decision: "ESCALATE",
+            recommendedAction: "INITIATE_RESPONSE",
+            reason:
+                "Potential hostile activity detected",
+            confidence: 0.99
+        };
+    }
+
+    return {
+        decision: "UNKNOWN",
+        recommendedAction: "REVIEW_REQUIRED",
+        reason:
+            "Additional analysis required",
+        confidence: 0.50
+    };
+}
+
+console.log("ODIN LOADED");

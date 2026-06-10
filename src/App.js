@@ -1,5 +1,4 @@
 import overwatchArtwork from "./assets/Overwatch.png";
-import { dashboardData } from "./dashboardData";
 import { runGateKeeperScan } from "./gatekeeper";
 import { useState } from "react";
 import { classifyObservation } from "./heimdal";
@@ -7,6 +6,7 @@ import { createMessage } from "./ratatoskr";
 import { storeObservation, getObservationCount } from "./monolith";
 import { generateNarrative } from "./narrativeEngine";
 import { generateRecommendation } from "./forge";
+import { evaluateObservation } from "./odin";
 
 function App() {
 
@@ -18,19 +18,20 @@ function App() {
   const [lastObservation, setLastObservation] = useState(null);
   const [target, setTarget] = useState("https://httpbin.org/get");
   const heimdalData = classifyObservation(scanData);
+  const odinData = evaluateObservation(heimdalData);
   const [scanHistory, setScanHistory] = useState([]);
 
 
   const forgeData =
     generateRecommendation(
-      dashboardData.odin.decision
+      odinData.decision
     );
 
   const operationalNarrative =
     generateNarrative(
       heimdalData,
       recordCount,
-      dashboardData.odin
+      odinData
     );
 
   const ratatoskrMessage =
@@ -42,11 +43,11 @@ function App() {
     );
 
   const odinDecisionColor =
-    dashboardData.odin.decision === "ESCALATE"
+    odinData.decision === "ESCALATE"
       ? "#EF4444"
-      : dashboardData.odin.decision === "CORRECTABLE"
+      : odinData.decision === "CORRECTABLE"
         ? "#FACC15"
-        : dashboardData.odin.decision === "APPROVE"
+        : odinData.decision === "APPROVE"
           ? "#22C55E"
           : "38BDF8";
 
@@ -430,7 +431,7 @@ function App() {
                 marginLeft: "8px"
               }}
             >
-              {dashboardData.odin.decision}
+              {odinData.decision}
             </span>
           </p>
           <div
@@ -455,7 +456,7 @@ function App() {
                   marginLeft: "8px"
                 }}
               >
-                {dashboardData.odin.recommendedAction}
+                {odinData.recommendedAction}
               </span>
             </p>
 
@@ -464,10 +465,10 @@ function App() {
               <span
                 style={{
                   color: "#94A3B8",
-                  marginLefft: "8px"
+                  marginLeft: "8px"
                 }}
               >
-                {dashboardData.odin.reason}
+                {odinData.reason}
               </span>
             </p>
 
@@ -480,7 +481,7 @@ function App() {
                   marginLeft: "8px"
                 }}
               >
-                {(dashboardData.odin.confidence * 100).toFixed(0)}%
+                {(odinData.confidence * 100).toFixed(0)}%
               </span>
             </p>
 

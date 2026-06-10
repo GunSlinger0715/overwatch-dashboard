@@ -24,7 +24,8 @@ function App() {
 
   const forgeData =
     generateRecommendation(
-      odinData.decision
+      odinData.decision,
+      heimdalData
     );
 
   const operationalNarrative =

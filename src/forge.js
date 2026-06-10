@@ -13,7 +13,8 @@
 
 
 export function generateRecommendation(
-    decision
+    decision,
+    heimdalData
 ) {
     console.log("FORGE RECEIVED:", decision);
 
@@ -29,16 +30,32 @@ export function generateRecommendation(
 
     if (decision === "CORRECTABLE") {
 
+        if (
+            heimdalData.classification === "MISCONFIGURATION"
+        ) {
+            return {
+                action: "REMEDIATE_CONFIGURATION",
+
+                priority: "MEDIUM",
+
+                recommendations: [
+                    "Validate security headers",
+                    "Review access controls",
+                    "Confirm TLS configuration",
+                    "Re-run endpoint assessment"
+                ]
+            };
+        }
+
         return {
             action: "REMEDIATE_CONFIGURATION",
 
             priority: "MEDIUM",
 
             recommendations: [
-                "Validate security headers",
-                "Review access controls",
-                "Confirm TLS configuration",
-                "Re-run endpoint assessment"
+                "Review findings",
+                "Perform validation",
+                "Confirm TLS configuration"
             ]
         };
     }

@@ -60,6 +60,21 @@ export function evaluateObservation(
         };
     }
 
+    if (
+        heimdalData.classification ===
+        "OFFLINE_ENDPOINT"
+    ) {
+
+        return {
+            decision: "REVIEW_REQUIRED",
+            recommendedAction: "INVESTIGATE_CONNECTIVITY",
+
+            reason:
+                "Target endpoint could not be reached.",
+            confidence: 0.90
+        };
+    }
+
     return {
         decision: "UNKNOWN",
         recommendedAction: "REVIEW_REQUIRED",

@@ -2,21 +2,49 @@ export async function runGateKeeperScan() {
 
     const startTime = Date.now();
 
-    const response = await fetch("https://httpbin.org/get");
+    try {
 
-    const endTime = Date.now();
+        const response =
+            await fetch(
+                "https://httpbin.org/get"
+            );
 
-    return {
-        status:
-            response.ok
-                ? "ONLINE"
-                : "OFFLINE",
+        const endTime = Date.now();
 
-        target: "https://httpbin.org/get",
+        return {
+            status:
+                response.ok
+                    ? "ONLINE"
+                    : "OFFLINE",
 
-        findings: 1,
+            target:
+                "https://httpbin.org/get",
 
-        responseTime:
-            endTime - startTime
-    };
+            findings: 1,
+
+            responseTime:
+                endTime - startTime
+        };
+
+    } catch (error) {
+
+        console.error(
+            "GateKeeper Scan Failed:",
+            error
+        );
+
+        const endTime = Date.now();
+
+        return {
+            status: "OFFLINE",
+
+            target:
+                "https://httpbin.org/get",
+
+            findings: 0,
+
+            responseTime:
+                endTime - startTime
+        };
+    }
 }

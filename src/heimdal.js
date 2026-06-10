@@ -16,6 +16,15 @@ export function classifyObservation(scanData) {
         };
     }
 
+    if (scanData.status === "OFFLINE") {
+
+        return {
+            classification: "OFFLINE_ENDPOINT",
+            confidence: 0.90,
+            priority: "MEDIUM"
+        };
+    }
+
     return {
         classification: "UNKNOWN",
         confidence: 0.5,

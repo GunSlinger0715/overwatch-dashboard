@@ -2,12 +2,22 @@ export async function runGateKeeperScan() {
 
     const startTime = Date.now();
 
+    const findings = [];
+
     try {
 
         const response =
             await fetch(
                 "https://httpbin.org/get"
             );
+
+        if (response.ok) {
+
+            findings.push({
+                tpe: "ENDPOINT_REACHABLE",
+                severity: "INFO"
+            })
+        }
 
         const endTime = Date.now();
 
@@ -20,7 +30,7 @@ export async function runGateKeeperScan() {
             target:
                 "https://httpbin.org/get",
 
-            findings: 1,
+            findings,
 
             responseTime:
                 endTime - startTime
@@ -41,7 +51,7 @@ export async function runGateKeeperScan() {
             target:
                 "https://httpbin.org/get",
 
-            findings: 0,
+            findings: [],
 
             responseTime:
                 endTime - startTime

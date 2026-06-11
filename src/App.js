@@ -182,7 +182,7 @@ function App() {
           color: "#FFFFFF",
         }}
       >
-        STATUS: {scanStatus}
+        STATUS: {scanData?.status || "NOT_SCANNED"}
       </div>
 
       <div
@@ -308,7 +308,7 @@ function App() {
                 marginLeft: "8px"
               }}
             >
-              {scanStatus}
+              {scanData?.status || "NOT_SCANNED"}
             </span>
           </p>
 
@@ -317,7 +317,7 @@ function App() {
           </p>
 
           <p>
-            Findings: {scanData?.findings || 0}
+            Findings: {scanData?.findings?.length || 0}
           </p>
 
           <p>

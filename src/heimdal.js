@@ -8,6 +8,20 @@ export function classifyObservation(scanData) {
         };
     }
 
+    if (
+        scanData.findings &&
+        scanData.findings.some(
+            finding =>
+                finding.type === "ENDPOINT_REACHABLE"
+        )
+    ) {
+        return {
+            classification: "HEALTHY_ENDPOINT",
+            confidence: 1.0,
+            priority: "LOW"
+        };
+    }
+
     if (scanData.status === "ONLINE") {
         return {
             classification: "HEALTHY_ENDPOINT",

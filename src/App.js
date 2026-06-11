@@ -535,6 +535,7 @@ function App() {
               {" "}
               {ratatoskrMessage.timestamp}
             </p>
+
             <h2
               style={{
                 color: "#FF8C42"

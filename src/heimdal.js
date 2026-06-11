@@ -16,6 +16,22 @@ export function classifyObservation(scanData) {
         };
     }
 
+    if (scanData.status === "INVALID_TARGET") {
+        return {
+            classification: "INVALID_TARGET",
+            confidence: 1.0,
+            priority: "LOW"
+        };
+    }
+
+    if (scanData.httpStatus === 403) {
+        return {
+            classification: "ACCESS_DENIED",
+            confidence: 0.95,
+            priority: "MEDIUM"
+        }
+    }
+
     if (
         scanData.findings &&
         scanData.findings.some(

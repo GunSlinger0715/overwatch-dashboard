@@ -61,14 +61,48 @@ export function evaluateObservation(
     }
 
     if (
-        heimdalData.classification === "RESOURCE_NOT_FOUND"
+        heimdalData.classification ===
+        "RESOURCE_NOT_FOUND"
     ) {
+
         return {
             decision: "VERIFY_RESOURCE_PATH",
             recommendedAction: "CHECK_ENDPOINT_URL",
 
             reason: "Target resource does not exist.",
             confidence: 0.95
+        };
+    }
+
+    if (
+        heimdalData.classification ===
+        "ACCESS_DENIED"
+    ) {
+
+        return {
+            decision: "VERIFY_ACCESS",
+            recommendedAction: "CHECK_AUTHORIZATION",
+
+            reason:
+                "Target resource exists but access is denied.",
+
+            confidence: 0.95
+        };
+    }
+
+    if (
+        heimdalData.classification ===
+        "INVALID_TARGET"
+    ) {
+
+        return {
+            decision: "CORRECT_INPUT",
+            recommendedAction: "VERIFY_TARGET_FORMAT",
+
+            reason:
+                "Target is not a valid URL.",
+
+            confidence: 1.0
         };
     }
 

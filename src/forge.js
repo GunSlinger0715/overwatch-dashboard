@@ -12,11 +12,12 @@
 // =========================================================
 
 
+
 export function generateRecommendation(
     decision,
     heimdalData
 ) {
-    console.log("FORGE RECEIVED:", decision);
+
 
     if (decision === "ALLOW") {
 
@@ -87,6 +88,39 @@ export function generateRecommendation(
             ]
         };
     }
+
+    if (decision === "VERIFY_ACCESS") {
+
+        return {
+            action: "CHECK_AUTHORIZATION",
+
+            priority: "MEDIUM",
+
+            recommendations: [
+                "Verify user credentials",
+                "Review access control policies",
+                "Confirm required permissions",
+                "Validate authorization configuration"
+            ]
+        };
+    }
+
+    if (decision === "CORRECT_INPUT") {
+
+        return {
+            action: "VERIFY_TARGET_FORMAT",
+
+            priority: "LOW",
+
+            recommendations: [
+                "Verify URL format",
+                "Confirm protocol is specified",
+                "Validate target hostname",
+                "Re-run endpoint assessment"
+            ]
+        };
+    }
+
     return {
         action: "REVIEW_REQUIRED",
         recommendations: [

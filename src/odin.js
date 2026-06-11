@@ -61,6 +61,19 @@ export function evaluateObservation(
     }
 
     if (
+        heimdalData.classification === "RESOURCE_NOT_FOUND"
+    ) {
+        return {
+            decision: "VERIFY_RESOURCE_PATH",
+            recommendedAction: "CHECK_ENDPOINT_URL",
+
+            reason: "Target resource does not exist.",
+            confidence: 0.95
+        };
+    }
+
+
+    if (
         heimdalData.classification ===
         "OFFLINE_ENDPOINT"
     ) {

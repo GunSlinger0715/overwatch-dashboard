@@ -321,6 +321,12 @@ function App() {
           </p>
 
           <p>
+            HTTP STATUS:
+            {" "}
+            {scanData?.httpStatus || "N/A"}
+          </p>
+
+          <p>
             Response Time:
             {" "}
             {scanData?.responseTime || 0}

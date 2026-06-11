@@ -8,6 +8,14 @@ export function classifyObservation(scanData) {
         };
     }
 
+    if (scanData.httpStatus === 404) {
+        return {
+            classification: "RESOURCE_NOT_FOUND",
+            confidence: 0.95,
+            priority: "LOW"
+        };
+    }
+
     if (
         scanData.findings &&
         scanData.findings.some(

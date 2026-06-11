@@ -73,6 +73,20 @@ export function generateRecommendation(
         };
     }
 
+    if (decision === "VERIFY_RESOURCE_PATH") {
+
+        return {
+            action: "CHECK_ENDPOINT_URL",
+
+            priority: "LOW",
+
+            recommendations: [
+                "Verify endpoint URL",
+                "Confirm resource exists",
+                "Review application routing"
+            ]
+        };
+    }
     return {
         action: "REVIEW_REQUIRED",
         recommendations: [

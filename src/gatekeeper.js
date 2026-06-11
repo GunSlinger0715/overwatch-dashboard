@@ -1,20 +1,34 @@
-export async function runGateKeeperScan() {
+export async function runGateKeeperScan(target) {
 
     const startTime = Date.now();
 
     const findings = [];
 
     try {
+        new URL(target);
+    } catch {
+
+        return {
+            status: "INVALID_TARGET",
+            target,
+            findings: [{
+                type: "INVALID_TARGET",
+                severity: "HIGH"
+            }],
+            responseTime: 0
+        };
+    }
+
+
+    try {
 
         const response =
-            await fetch(
-                "https://httpbin.org/get"
-            );
+            await fetch(target);
 
         if (response.ok) {
 
             findings.push({
-                tpe: "ENDPOINT_REACHABLE",
+                type: "ENDPOINT_REACHABLE",
                 severity: "INFO"
             })
         }
@@ -27,8 +41,7 @@ export async function runGateKeeperScan() {
                     ? "ONLINE"
                     : "OFFLINE",
 
-            target:
-                "https://httpbin.org/get",
+            target: target,
 
             findings,
 
@@ -53,8 +66,7 @@ export async function runGateKeeperScan() {
         return {
             status: "OFFLINE",
 
-            target:
-                "https://httpbin.org/get",
+            target: target,
 
             findings,
 

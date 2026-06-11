@@ -67,7 +67,7 @@ function App() {
 
     setProgress(50);
 
-    const result = await runGateKeeperScan();
+    const result = await runGateKeeperScan(target);
 
     setEventFeed(prev => [...prev, `${getTimestamp()} - GateKeeper Scan Complete`]);
 

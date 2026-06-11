@@ -43,6 +43,11 @@ export async function runGateKeeperScan() {
             error
         );
 
+        findings.push({
+            type: "ENDPOINT_UNREACHABLE",
+            severity: "HIGH"
+        });
+
         const endTime = Date.now();
 
         return {
@@ -51,7 +56,7 @@ export async function runGateKeeperScan() {
             target:
                 "https://httpbin.org/get",
 
-            findings: [],
+            findings,
 
             responseTime:
                 endTime - startTime

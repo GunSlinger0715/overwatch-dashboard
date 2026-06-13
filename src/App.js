@@ -6,6 +6,10 @@ import { storeObservation, getObservationCount } from "./monolith";
 import { generateNarrative } from "./narrativeEngine";
 import { generateRecommendation } from "./forge";
 import { evaluateObservation } from "./odin";
+import yggdrasilImage from "./assets/yggdrasil.png";
+import overwatchLogo from "./assets/overwatch-logo.png";
+import monolithSpire from "./assets/monolith-spire.png";
+import ratatoskrMessenger from "./assets/ratatoskr-messenger.png";
 
 function App() {
 
@@ -408,7 +412,10 @@ function App() {
           style={{
             border: "1px solid #1E293B",
             padding: "20px",
-            borderRadius: "8px"
+            borderRadius: "8px",
+
+            position: "relative",
+            overflow: "hidden"
           }}
         >
           <h2
@@ -418,6 +425,43 @@ function App() {
           >
             🏛️ Monolith
           </h2>
+          <img
+            src={monolithSpire}
+            alt="Monolith Spire"
+            style={{
+              position: "absolute",
+              right: "20px",
+              bottom: "20px",
+
+              width: "120px",
+
+              opacity: 0.06,
+
+              pointerEvents: "none",
+
+              filter:
+                "drop-shadow(0 0 15px #A855F7)"
+            }}
+          />
+
+          <div
+            style={{
+              position: "absolute",
+              right: "15px",
+              bottom: "10px",
+
+              color: "#A855F7",
+              opacity: 0.15,
+
+              fontSize: "12px",
+              letterSpacing: "2px",
+
+              pointerEvents: "none"
+            }}
+          >
+            MEMORY ARCHIVE
+          </div>
+
           <p>
             Records Stored:
             {" "}
@@ -487,9 +531,48 @@ function App() {
               boxShadow: "0 0 10px rgba(56,189,248,0.15)",
               backgroundColor: "#111827",
               padding: "20px",
-              borderRadius: "8px"
+              borderRadius: "8px",
+
+              position: "relative",
+              overflow: "hidden"
             }}
           >
+            <img
+              src={ratatoskrMessenger}
+              alt="Ratatoskr Messenger"
+              style={{
+                position: "absolute",
+                right: "20px",
+                bottom: "350px",
+
+                width: "120px",
+
+                opacity: 0.06,
+
+                pointerEvents: "none",
+
+                filter:
+                  "drop-shadow(0 0 15px #FB923C)"
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                right: "10px",
+                bottom: "300px",
+
+                color: "#FB923C",
+                opacity: 0.15,
+
+                fontSize: "12px",
+                letterSpacing: "2px",
+
+                pointerEvents: "none"
+              }}
+            >
+              REALM MESSENGER
+            </div>
             <p
               style={{
                 marginBottom: "20px"
@@ -650,7 +733,9 @@ function App() {
             padding: "20px",
             boxShadow: "0 0 10px rgba(56,189,248,0.15)",
             maxHeight: "300px",
-            overflowY: "auto"
+            overflowY: "auto",
+
+            position: "relative"
           }}
         >
           <h2
@@ -658,44 +743,96 @@ function App() {
               color: "#38BDF8"
             }}
           >
-            Scan History
+            ⚙️ Workflow Status
           </h2>
 
-          <p
+          <img
+            src={overwatchLogo}
+            alt="OVERWATCH Core"
             style={{
-              color: "#38BDF8",
-              fontWeight: "bold",
-              marginBottom: "15px"
-            }}
-          >
-            Total Scans: {scanHistory.length}
-          </p>
+              position: "absolute",
+              right: "25px",
+              bottom: "25px",
 
-          <p
-            style={{
-              color: "#22C55E",
-              fontWeight: "bold",
-              marginBottom: "10px"
-            }}
-          >
-            Successful Scans: {scanHistory.length}
-          </p>
+              width: "180px",
 
-          <p
-            style={{
-              color: "#94A3B8",
-              marginBottom: "15px"
+              opacity: 0.05,
+
+              pointerEvents: "none",
+
+              filter:
+                "drop-shadow(0 0 15px #38BDF8)"
             }}
-          >
-            Last Scan: {scanHistory.length > 0 ? scanHistory[scanHistory.length - 1] : "None"}
-          </p>
+          />
+
           <div
             style={{
-              maxHeight: "200px",
-              overflowY: "auto",
-              marginTop: "10px"
+              position: "absolute",
+              right: "55px",
+              bottom: "10px",
+
+              color: "#38BDF8",
+              opacity: 0.15,
+
+              fontSize: "12px",
+              letterSpacing: "2px",
+
+              pointerEvents: "none"
             }}
-          ></div>
+          >
+            OVERWATCH CORE
+          </div>
+
+          <div
+            style={{
+              color: "#FFFFFF",
+              lineHeight: "2"
+            }}
+          >
+
+            <p>
+              🛡️ <strong style={{ color: "#22C55E" }}>
+                GateKeeper
+              </strong>
+              {" "} - Observation
+            </p>
+
+            <p>
+              👁️ <strong style={{ color: "#FACC15" }}>
+                Heimdal
+              </strong>
+              {" "} - Classification
+            </p>
+
+            <p>
+              👤 <strong style={{ color: "#38BDF8" }}>
+                Odin
+              </strong>
+              {" "} - Decision
+            </p>
+
+            <p>
+              ⚒️ <strong style={{ color: "#EF4444" }}>
+                Forge
+              </strong>
+              {" "} - Recommendation
+            </p>
+
+            <p>
+              🏛️ <strong style={{ color: "#A855F7" }}>
+                Monolith
+              </strong>
+              {" "} - Memory
+            </p>
+
+            <p>
+              🐿️ <strong style={{ color: "#F97316" }}>
+                Ratatoskr
+              </strong>
+              {" "} - Transport
+            </p>
+
+          </div>
 
           {scanHistory.map((scan, index) => (
             <p
@@ -716,9 +853,31 @@ function App() {
             padding: "20px",
             borderRadius: "8px",
             marginTop: "20px",
-            marginBottom: "20px"
+            marginBottom: "20px",
+
+            position: "relative",
+            overflow: "hidden"
           }}
         >
+          <img
+            src={yggdrasilImage}
+            alt="Yggdrasil"
+            style={{
+              position: "absolute",
+              right: "20px",
+              bottom: "20px",
+
+              width: "250px",
+
+              opacity: 0.06,
+
+              pointerEvents: "none",
+
+              filter:
+                "drop-shadow(0 0 15px #38BDF8)"
+            }}
+          />
+
           <h2
             style={{
               color: "#38BDF8"

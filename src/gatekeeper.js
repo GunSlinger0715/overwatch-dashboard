@@ -69,6 +69,8 @@ export async function runGateKeeperScan(target) {
         return {
             status: "OFFLINE",
 
+            httpStatus: null,
+
             target: target,
 
             findings,

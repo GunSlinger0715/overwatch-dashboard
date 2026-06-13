@@ -10,6 +10,9 @@ import yggdrasilImage from "./assets/yggdrasil.png";
 import overwatchLogo from "./assets/overwatch-logo.png";
 import monolithSpire from "./assets/monolith-spire.png";
 import ratatoskrMessenger from "./assets/ratatoskr-messenger.png";
+import gatekeeperWatermark from "./assets/gatekeeper-watermark.png";
+import heimdalSentinel from "./assets/heimdal-Sentinel.png";
+import odinOracle from "./assets/odin-oracle.png";
 
 function App() {
 
@@ -322,9 +325,52 @@ function App() {
             boxShadow: "0 0 10px rgba(56,189,248,0.15)",
             backgroundColor: "#111827",
             padding: "20px",
-            borderRadius: "8px"
+            borderRadius: "8px",
+
+            position: "relative",
+            overflow: "hidden"
           }}
         >
+          <img
+            src={gatekeeperWatermark}
+            alt="GateKeeper"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+
+              transform: "translate(-50%, -50%)",
+
+              width: "260px",
+
+              opacity: 0.05,
+
+              pointerEvents: "none",
+
+              filter:
+                "drop-shadow(0 0 15px #22C55E)"
+            }}
+          />
+
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              bottom: "20px",
+
+              transform: "translateX(-50%)",
+
+              color: "#22C55E",
+              opacity: 0.15,
+
+              fontSize: "12px",
+              letterSpacing: "2px",
+
+              pointerEvents: "none"
+            }}
+          >
+            OBSERVATION ENGINE
+          </div>
           <h2
             style={{
               color: "#22C55E"
@@ -371,9 +417,53 @@ function App() {
           style={{
             border: "1px solid #1E293B",
             padding: "20px",
-            borderRadius: "8px"
+            borderRadius: "8px",
+
+            position: "relative",
+            overflow: "hidden"
           }}
         >
+
+          <img
+            src={heimdalSentinel}
+            alt="Heimdal"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+
+              transform: "translate(-50%, -50%)",
+
+              width: "260px",
+
+              opacity: 0.15,
+
+              pointerEvents: "none",
+
+              filter:
+                "drop-shadow(0 0 15px #FACC15)"
+            }}
+          />
+
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              bottom: "10px",
+
+              transform: "translateX(-50%)",
+
+              color: "#FACC15",
+              opacity: 0.15,
+
+              fontSize: "12px",
+              letterSpacing: "2px",
+
+              pointerEvents: "none"
+            }}
+          >
+            REALM SENTINEL
+          </div>
           <h2
             style={{
               color: "#FACC15"
@@ -430,12 +520,15 @@ function App() {
             alt="Monolith Spire"
             style={{
               position: "absolute",
-              right: "20px",
-              bottom: "20px",
+              top: "50%",
+              left: "50%",
 
-              width: "120px",
+              transform:
+                "translate(-50%, -50%)",
 
-              opacity: 0.06,
+              width: "500px",
+
+              opacity: 0.10,
 
               pointerEvents: "none",
 
@@ -447,8 +540,11 @@ function App() {
           <div
             style={{
               position: "absolute",
-              right: "15px",
-              bottom: "10px",
+              left: "50%",
+              bottom: "20px",
+
+              transform:
+                "translateX(-50%)",
 
               color: "#A855F7",
               opacity: 0.15,
@@ -503,9 +599,13 @@ function App() {
           style={{
             border: "1px solid #1E293B",
             padding: "20px",
-            borderRadius: "8px"
+            borderRadius: "8px",
+
+            position: "relative",
+            overflow: "hidden"
           }}
         >
+
           <h2
             style={{
               color: "#38BDF8"
@@ -864,10 +964,12 @@ function App() {
             alt="Yggdrasil"
             style={{
               position: "absolute",
-              right: "20px",
-              bottom: "20px",
+              top: "50%",
+              left: "50%",
 
-              width: "250px",
+              transform: "translate(-50%, -50%)",
+
+              width: "900px",
 
               opacity: 0.06,
 

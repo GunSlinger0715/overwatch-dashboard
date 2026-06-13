@@ -1,4 +1,3 @@
-import overwatchArtwork from "./assets/Overwatch.png";
 import { runGateKeeperScan } from "./gatekeeper";
 import { useState } from "react";
 import { classifyObservation } from "./heimdal";
@@ -123,8 +122,8 @@ function App() {
           paddingBottom: "20px",
           marginBottom: "30px",
           display: "flex",
+          justifyContent: "space-between",
           alignItems: "center",
-          gap: "15px"
         }}
       >
         <div
@@ -154,7 +153,37 @@ function App() {
             Operational Intelligence Platform
           </p>
         </div>
+        <div
+          style={{
+            display: "flex",
+            gap: "40px",
+            color: "#94A3B8",
+            fontSize: "14px"
+          }}
+        >
+          <div>
+            <div>REALM STATUS</div>
+            <strong style={{ color: "#22C55E" }}>
+              OPERATIONAL
+            </strong>
+          </div>
+
+          <div>
+            <div>SUBSYSTEMS</div>
+            <strong style={{ color: "#22C55E" }}>
+              6 ONLINE
+            </strong>
+          </div>
+
+
+          <div>LAST ASSESSMENT</div>
+          <strong style={{ color: "#38BDF8" }}>
+            {new Date().toLocaleTimeString()}
+          </strong>
+        </div>
       </div>
+
+
 
       <div
         style={{
@@ -413,6 +442,17 @@ function App() {
             {lastObservation?.responseTime || 0}
             ms
           </p>
+          <p>
+            Last Classification:
+            {" "}
+            {heimdalData.classification}
+          </p>
+
+          <p>
+            Last Decision:
+            {" "}
+            {odinData.decision}
+          </p>
         </div>
 
         <div
@@ -534,6 +574,17 @@ function App() {
               TimeStamp:
               {" "}
               {ratatoskrMessage.timestamp}
+            </p>
+            <p>
+              Transport Status:
+              {" "}
+              {ratatoskrMessage.transportStatus}
+            </p>
+
+            <p>
+              Latency:
+              {" "}
+              {ratatoskrMessage.latency}
             </p>
 
             <h2
@@ -667,49 +718,7 @@ function App() {
             marginTop: "20px",
             marginBottom: "20px"
           }}
-        ><div
-          style={{
-            marginTop: "20px",
-            marginBottom: "20px"
-          }}
         >
-            <img
-              src={overwatchArtwork}
-              alt="OVERWATCH Ecosystem"
-              style={{
-                maxWidth: "1100px",
-                width: "100%",
-                display: "block",
-                margin: "0 auto",
-                borderRadius: "10px",
-                border: "1px solid #334155"
-              }}
-            />
-
-            <div
-              style={{
-                textAlign: "center",
-                marginTop: "15px"
-              }}
-            >
-              <h3
-                style={{
-                  color: "#38BDF8",
-                  marginBottom: "10px"
-                }}
-              >
-                Observe. Interpret. Remember. Protect.
-              </h3>
-
-              <p
-                style={{
-                  color: "#94A3B8"
-                }}
-              >
-                Transforming Observations Into Operational Understanding
-              </p>
-            </div>
-          </div>
           <h2
             style={{
               color: "#38BDF8"
@@ -748,7 +757,7 @@ function App() {
           </p>
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 

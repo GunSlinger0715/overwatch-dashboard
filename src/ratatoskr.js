@@ -14,6 +14,10 @@ export function createMessage(
         messageType,
         payload,
 
+        transportStatus: "DELIVERED",
+
+        latency: "0ms",
+
         timestamp:
             new Date().toISOString()
     };

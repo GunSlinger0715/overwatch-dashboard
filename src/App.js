@@ -12,7 +12,8 @@ import monolithSpire from "./assets/monolith-spire.png";
 import ratatoskrMessenger from "./assets/ratatoskr-messenger.png";
 import gatekeeperWatermark from "./assets/gatekeeper-watermark.png";
 import heimdalSentinel from "./assets/heimdal-Sentinel.png";
-import odinOracle from "./assets/odin-oracle.png";
+import odinOracle from "./assets/odin-Oracle.png";
+import forgeWatermark from "./assets/forge.png";
 
 function App() {
 
@@ -637,42 +638,54 @@ function App() {
               overflow: "hidden"
             }}
           >
+
             <img
-              src={ratatoskrMessenger}
-              alt="Ratatoskr Messenger"
+              src={odinOracle}
+              alt="Odin Oracle"
               style={{
                 position: "absolute",
-                right: "20px",
-                bottom: "350px",
 
-                width: "120px",
+                top: "45%",
+                left: "50%",
 
-                opacity: 0.06,
+                transform:
+                  "translate(-50%, -50%)",
+
+                width: "320px",
+
+                opacity: 0.12,
 
                 pointerEvents: "none",
 
                 filter:
-                  "drop-shadow(0 0 15px #FB923C)"
+                  "drop-shadow(0 0 15px #38BDF8)"
               }}
             />
 
             <div
               style={{
                 position: "absolute",
-                right: "10px",
-                bottom: "300px",
 
-                color: "#FB923C",
+                left: "50%",
+                bottom: "10px",
+
+                transform:
+                  "translateX(-50%)",
+
+                color: "#38BDF8",
+
                 opacity: 0.15,
 
                 fontSize: "12px",
+
                 letterSpacing: "2px",
 
                 pointerEvents: "none"
               }}
             >
-              REALM MESSENGER
+              REALM ORACLE
             </div>
+
             <p
               style={{
                 marginBottom: "20px"
@@ -691,7 +704,7 @@ function App() {
             </p>
 
             <p>
-              Reason:{" "}
+              Reason:
               <span
                 style={{
                   color: "#94A3B8",
@@ -711,7 +724,7 @@ function App() {
                   marginLeft: "8px"
                 }}
               >
-                {(odinData.confidence * 100).toFixed(0)}%
+                {odinData.confidence}%
               </span>
             </p>
 
@@ -721,14 +734,66 @@ function App() {
                 margin: "15px 0"
               }}
             />
-            <h2
+
+          </div>
+
+          {/* Ratatoskr Starts Here */}
+
+          <h2
+            style={{
+              color: "#FB923C"
+            }}
+          >
+            🐿️ Ratatoskr
+          </h2>
+          <div
+            style={{
+              position: "relative",
+              overflow: "hidden"
+            }}
+          >
+
+            <img
+              src={ratatoskrMessenger}
+              alt="Realm Messenger"
               style={{
-                color: "#FB923C"
+                position: "absolute",
+
+                top: "50%",
+                left: "50%",
+
+                transform: "translate(-50%, -50%)",
+
+                width: "220px",
+
+                opacity: 0.08,
+
+                pointerEvents: "none",
+
+                filter: "drop-shadow(0 0 15px #FB923C)"
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+
+                right: "325px",
+                bottom: "10px",
+
+                color: "#FB923C",
+
+                opacity: 0.15,
+
+                fontSize: "12px",
+
+                letterSpacing: "2px",
+
+                pointerEvents: "none"
               }}
             >
-              🐿️ Ratatoskr
-            </h2>
-
+              REALM MESSENGER
+            </div>
             <p>
               Message ID:
               {" "}
@@ -769,14 +834,63 @@ function App() {
               {" "}
               {ratatoskrMessage.latency}
             </p>
+          </div>
+          <h2
+            style={{
+              color: "#FF8C42"
+            }}
+          >
+            ⚒️ Forge
+          </h2>
 
-            <h2
+          <div
+            style={{
+              position: "relative",
+              overflow: "hidden"
+            }}
+          >
+
+            <img
+              src={forgeWatermark}
+              alt="Realm Forge"
               style={{
-                color: "#FF8C42"
+                position: "absolute",
+
+                top: "55%",
+                left: "50%",
+
+                transform: "translate(-50%, -50%)",
+
+                width: "250px",
+
+                opacity: 0.12,
+
+                pointerEvents: "none",
+
+                filter: "drop-shadow(0 0 15px #FF8C42)"
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+
+                left: "50%",
+                bottom: "10px",
+
+                transform: "translateX(-50%)",
+
+                color: "#FF8C42",
+                opacity: 0.12,
+
+                fontSize: "12px",
+                letterSpacing: "2px",
+
+                pointerEvents: "none"
               }}
             >
-              ⚒️ Forge
-            </h2>
+              REALM FORGE
+            </div>
 
             <p>
               Action:
@@ -803,10 +917,10 @@ function App() {
                 </li>
               ))}
             </ul>
-
           </div>
         </div>
       </div>
+
       <div
         style={{
           marginTop: "20px",
@@ -851,10 +965,12 @@ function App() {
             alt="OVERWATCH Core"
             style={{
               position: "absolute",
-              right: "25px",
-              bottom: "25px",
+              left: "50%",
+              bottom: "10px",
 
-              width: "180px",
+              transform: "translateX(-50%)",
+
+              width: "250px",
 
               opacity: 0.05,
 
@@ -868,8 +984,10 @@ function App() {
           <div
             style={{
               position: "absolute",
-              right: "55px",
-              bottom: "10px",
+              left: "50%",
+              bottom: "50px",
+
+              transform: "translateX(-50%)",
 
               color: "#38BDF8",
               opacity: 0.15,
